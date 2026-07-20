@@ -666,6 +666,39 @@ const ctx = document.getElementById('c').getContext('2d');
 ];
 
 // ---------------------------------------------------------------------------
+// Engine selection guide
+// ---------------------------------------------------------------------------
+export const ENGINES = [
+  {
+    name: 'Godot',
+    language: 'GDScript / C# / C++ (modules)',
+    license: 'MIT — genuinely free',
+    curve: 'Gentle',
+    bestFor: 'Indie & 2D, learning how engines work',
+    pick: 'Pick if you value open source and want an engine whose entire codebase you can read. Closest to the "own your stack" embedded ethos; the editor itself is a Godot game.',
+    watchOut: '3D is capable but a tier behind Unreal; console export needs third-party help.'
+  },
+  {
+    name: 'Unity',
+    language: 'C#',
+    license: 'Proprietary, free tier (revenue-capped)',
+    curve: 'Moderate',
+    bestFor: 'Fastest route to a jam-ready game; mobile; the largest tutorial ecosystem',
+    pick: 'Pick if you want maximum learning resources and job postings. C# is a weekend transition from C++, and DOTS/ECS lets your data-oriented instincts loose later.',
+    watchOut: 'Trust wobbles after the 2023 pricing episode; engine source is closed.'
+  },
+  {
+    name: 'Unreal',
+    language: 'C++ / Blueprints',
+    license: 'Source-available, 5% royalty past $1M',
+    curve: 'Steep',
+    bestFor: 'AAA-track roles, high-end 3D, the industry-standard C++ codebase',
+    pick: 'Pick if the goal is a professional engine-programming job. It is the only mainstream engine where your C++ depth is the native language, and reading its source is an education.',
+    watchOut: 'Heavy tooling, long compiles; overkill for small 2D games.'
+  }
+];
+
+// ---------------------------------------------------------------------------
 // Curated tracks through the projects
 // ---------------------------------------------------------------------------
 export const TRACKS = [

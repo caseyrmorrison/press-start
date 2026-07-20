@@ -1,0 +1,54 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Mock C — CRT Phosphor</title>
+<style>
+  :root {
+    --bg: #060807; --phos: #4af07a; --phos-dim: #1e6b3a; --amber: #f0c04a;
+    --ink: #c8e8d0;
+    --mono: ui-monospace, "SF Mono", Menlo, monospace;
+  }
+  * { margin: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--ink); font-family: var(--mono);
+    min-height: 100vh; position: relative; overflow-x: hidden; }
+  body::after { content: ""; position: fixed; inset: 0; pointer-events: none;
+    background: repeating-linear-gradient(0deg, transparent 0 2px, rgba(0,0,0,0.25) 2px 4px); }
+  .wrap { max-width: 900px; margin: 0 auto; padding: 48px 32px; }
+  .boot { color: var(--phos-dim); font-size: 13px; line-height: 1.7; }
+  .boot b { color: var(--phos); font-weight: 400; }
+  h1 { font-size: 56px; letter-spacing: 0.04em; margin: 32px 0 8px;
+    color: var(--phos); text-shadow: 0 0 12px rgba(74,240,122,0.55), 0 0 40px rgba(74,240,122,0.2); }
+  h1 .cursor { animation: blink 1s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+  .tag { color: var(--amber); font-size: 15px; letter-spacing: 0.08em; margin-bottom: 40px; }
+  .menu { border: 1px solid var(--phos-dim); padding: 24px; max-width: 560px; }
+  .menu .mh { color: var(--amber); font-size: 12px; letter-spacing: 0.2em; margin-bottom: 16px; }
+  .mi { display: flex; justify-content: space-between; padding: 8px 4px; font-size: 15px; }
+  .mi:hover { background: rgba(74,240,122,0.1); }
+  .mi .k { color: var(--phos); }
+  .mi .v { color: var(--phos-dim); }
+  .mi.sel { background: var(--phos); color: var(--bg); }
+  .mi.sel .k, .mi.sel .v { color: var(--bg); }
+  .stats { display: flex; gap: 40px; margin-top: 40px; font-size: 13px; color: var(--phos-dim); }
+  .stats b { display: block; font-size: 28px; color: var(--amber); font-weight: 400; }
+</style></head><body>
+<div class="wrap">
+  <div class="boot">
+    PRESS-START BIOS v2.6 — ECE/CS SUBSTRATE DETECTED<br>
+    MEMORY TEST: <b>MS ECE ... OK</b> &nbsp; <b>BS CS ... OK</b> &nbsp; <b>C/C++ ... OK</b><br>
+    LOADING CAREER RETARGET MODULE ...
+  </div>
+  <h1>PRESS START<span class="cursor">_</span></h1>
+  <div class="tag">GAME DEV FOR THE MID-CAREER ENGINEER</div>
+  <div class="menu">
+    <div class="mh">MAIN MENU — SELECT MISSION</div>
+    <div class="mi sel"><span class="k">▶ SKILL TRANSFER MAP</span><span class="v">7 LANES</span></div>
+    <div class="mi"><span class="k">&nbsp; STUDY ROADMAP</span><span class="v">4 PHASES</span></div>
+    <div class="mi"><span class="k">&nbsp; SIDE PROJECTS + CODE</span><span class="v">8 CARTS</span></div>
+    <div class="mi"><span class="k">&nbsp; ENGINE SELECT</span><span class="v">3 OPTIONS</span></div>
+  </div>
+  <div class="stats">
+    <div><b>8</b>PROJECTS</div>
+    <div><b>24+</b>WEEKS MAPPED</div>
+    <div><b>0</b>DEPENDENCIES</div>
+  </div>
+</div>
+</body></html>

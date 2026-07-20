@@ -1,0 +1,78 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Mock A — Engine Editor</title>
+<style>
+  :root {
+    --bg: #101419; --panel: #171c23; --panel2: #1d242e; --line: #2a3340;
+    --ink: #d8dee7; --dim: #7d8896; --amber: #ffb454; --cyan: #5ccfe6; --green: #87d96c;
+    --mono: ui-monospace, "SF Mono", Menlo, monospace;
+    --sans: -apple-system, "Segoe UI", system-ui, sans-serif;
+  }
+  * { margin: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--ink); font-family: var(--sans); }
+  .topbar { display: flex; gap: 16px; align-items: center; padding: 10px 20px;
+    background: var(--panel); border-bottom: 1px solid var(--line);
+    font-family: var(--mono); font-size: 12px; color: var(--dim); }
+  .topbar .logo { color: var(--amber); font-weight: 700; }
+  .topbar .stat b { color: var(--green); font-weight: 400; }
+  .hero { padding: 64px 40px 48px; max-width: 1100px; margin: 0 auto; }
+  .hero .crumb { font-family: var(--mono); font-size: 12px; color: var(--cyan);
+    letter-spacing: 0.12em; text-transform: uppercase; }
+  h1 { font-size: 52px; line-height: 1.05; margin: 14px 0 18px; letter-spacing: -0.02em; }
+  h1 em { color: var(--amber); font-style: normal; }
+  .hero p { max-width: 60ch; color: var(--dim); font-size: 17px; line-height: 1.6; }
+  .grid { display: grid; grid-template-columns: 2fr 1fr; gap: 16px;
+    max-width: 1100px; margin: 0 auto; padding: 0 40px 60px; }
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; }
+  .panel .ph { display: flex; justify-content: space-between; padding: 8px 14px;
+    border-bottom: 1px solid var(--line); font-family: var(--mono); font-size: 11px;
+    color: var(--dim); text-transform: uppercase; letter-spacing: 0.1em; }
+  .panel .pb { padding: 16px; }
+  .skill { display: grid; grid-template-columns: 1fr 24px 1fr; gap: 8px;
+    padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 14px; align-items: center; }
+  .skill:last-child { border: 0; }
+  .skill .arrow { color: var(--amber); font-family: var(--mono); text-align: center; }
+  .skill .to { color: var(--cyan); }
+  .proj { background: var(--panel2); border: 1px solid var(--line); border-radius: 6px;
+    padding: 14px; margin-bottom: 10px; }
+  .proj .t { font-weight: 600; margin-bottom: 4px; }
+  .proj .m { font-family: var(--mono); font-size: 11px; color: var(--amber); }
+  .frame { height: 60px; display: flex; align-items: flex-end; gap: 2px; padding: 8px 14px; }
+  .frame i { flex: 1; background: var(--green); opacity: 0.7; border-radius: 1px 1px 0 0; }
+</style></head><body>
+<div class="topbar">
+  <span class="logo">▲ PRESS START</span>
+  <span class="stat">frame <b>16.61ms</b></span>
+  <span class="stat">phase <b>2/4</b></span>
+  <span class="stat">projects <b>8</b></span>
+  <span style="margin-left:auto">caseyr — engine_dev.profile</span>
+</div>
+<div class="hero">
+  <div class="crumb">// from ECE to shipped games</div>
+  <h1>You already trained for this.<br>Now <em>compile</em> it into games.</h1>
+  <p>A study platform for the mid-career engineer — MS in ECE, BS in CS — who wants
+  into game development. Map your existing skills onto engine disciplines, follow a
+  staged roadmap, and build eight side projects with real starter code.</p>
+</div>
+<div class="grid">
+  <div class="panel">
+    <div class="ph"><span>skill_transfer.map</span><span>7 entries</span></div>
+    <div class="pb">
+      <div class="skill"><span>DSP &amp; signals</span><span class="arrow">→</span><span class="to">Game audio &amp; synthesis</span></div>
+      <div class="skill"><span>Computer architecture</span><span class="arrow">→</span><span class="to">Data-oriented design</span></div>
+      <div class="skill"><span>Control systems</span><span class="arrow">→</span><span class="to">Cameras &amp; game feel</span></div>
+    </div>
+  </div>
+  <div class="panel">
+    <div class="ph"><span>frame_time</span><span>60 fps</span></div>
+    <div class="frame">
+      <i style="height:40%"></i><i style="height:55%"></i><i style="height:45%"></i>
+      <i style="height:70%"></i><i style="height:50%"></i><i style="height:65%"></i>
+      <i style="height:42%"></i><i style="height:58%"></i>
+    </div>
+    <div class="pb">
+      <div class="proj"><div class="m">WEEKEND · DSP</div><div class="t">Chiptune Synth from Scratch</div></div>
+      <div class="proj"><div class="m">MONTH+ · NETCODE</div><div class="t">Networked Pong with Rollback</div></div>
+    </div>
+  </div>
+</div>
+</body></html>

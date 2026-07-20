@@ -1,0 +1,81 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Mock B — Datasheet</title>
+<style>
+  :root {
+    --paper: #fbfaf7; --ink: #1a2437; --rule: #c9cdd6; --red: #c8362b;
+    --navy: #23406e; --dim: #5a6474;
+    --mono: ui-monospace, "SF Mono", Menlo, monospace;
+    --sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+  * { margin: 0; box-sizing: border-box; }
+  body { background: var(--paper); color: var(--ink); font-family: var(--sans); }
+  .sheet { max-width: 960px; margin: 0 auto; padding: 32px 40px; }
+  .dochead { display: flex; justify-content: space-between; align-items: baseline;
+    border-bottom: 3px solid var(--ink); padding-bottom: 10px; }
+  .dochead .corp { font-weight: 700; font-size: 20px; letter-spacing: -0.01em; }
+  .dochead .corp span { color: var(--red); }
+  .dochead .pn { font-family: var(--mono); font-size: 13px; color: var(--dim); text-align: right; }
+  .titleblock { padding: 28px 0 20px; border-bottom: 1px solid var(--rule); }
+  .titleblock .part { font-family: var(--mono); font-size: 13px; color: var(--red);
+    letter-spacing: 0.15em; }
+  h1 { font-size: 40px; font-weight: 700; letter-spacing: -0.02em; margin: 8px 0 10px; }
+  .titleblock .sub { font-size: 16px; color: var(--dim); max-width: 70ch; line-height: 1.55; }
+  .features { display: grid; grid-template-columns: 1fr 1fr; gap: 0 40px; padding: 20px 0; }
+  h2 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.12em;
+    color: var(--navy); border-bottom: 1px solid var(--rule); padding-bottom: 6px; margin-bottom: 12px; }
+  ul { list-style: none; }
+  ul li { font-size: 14px; line-height: 1.5; padding: 4px 0 4px 16px; position: relative; }
+  ul li::before { content: "■"; color: var(--red); font-size: 8px; position: absolute; left: 0; top: 9px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { text-align: left; font-family: var(--mono); font-weight: 400; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.08em; color: var(--dim);
+    border-bottom: 1px solid var(--ink); padding: 6px 8px; }
+  td { border-bottom: 1px solid var(--rule); padding: 8px; font-variant-numeric: tabular-nums; }
+  td.mono { font-family: var(--mono); font-size: 12px; color: var(--navy); }
+  .foot { font-family: var(--mono); font-size: 11px; color: var(--dim);
+    border-top: 3px solid var(--ink); margin-top: 28px; padding-top: 8px;
+    display: flex; justify-content: space-between; }
+</style></head><body>
+<div class="sheet">
+  <div class="dochead">
+    <div class="corp">PRESS<span>▶</span>START</div>
+    <div class="pn">DOC. NO. GDEV-2026-01<br>REV A · JULY 2026</div>
+  </div>
+  <div class="titleblock">
+    <div class="part">GDEV-101 · CAREER RETARGETING MODULE</div>
+    <h1>Mid-Career Engineer → Game Developer</h1>
+    <div class="sub">Single-package conversion path for engineers with BS-CS and MS-ECE
+    substrates. Integrates skill-transfer mapping, 4-phase study roadmap, and 8
+    field-tested side projects with starter code. No external dependencies.</div>
+  </div>
+  <div class="features">
+    <div>
+      <h2>Absolute Maximum Ratings</h2>
+      <table>
+        <tr><th>Parameter</th><th>Value</th><th>Unit</th></tr>
+        <tr><td>Roadmap phases</td><td class="mono">4</td><td>phases</td></tr>
+        <tr><td>Side projects</td><td class="mono">8</td><td>repos</td></tr>
+        <tr><td>Time to first playable</td><td class="mono">1</td><td>weekend</td></tr>
+        <tr><td>Skill-transfer channels</td><td class="mono">7</td><td>lanes</td></tr>
+      </table>
+    </div>
+    <div>
+      <h2>Key Features</h2>
+      <ul>
+        <li>DSP coursework routes directly to game-audio synthesis lane</li>
+        <li>Cache-aware ECS architecture exploits existing comp-arch substrate</li>
+        <li>Deterministic fixed-timestep loop, drop-in compatible with embedded intuition</li>
+        <li>Rollback netcode channel utilizes native networking background</li>
+      </ul>
+    </div>
+  </div>
+  <h2>Pin Configuration — Skill Transfer</h2>
+  <table>
+    <tr><th>Pin</th><th>You have</th><th>Becomes</th><th>Lane</th></tr>
+    <tr><td class="mono">1</td><td>DSP &amp; signals</td><td>Audio &amp; procedural synthesis</td><td class="mono">AUDIO</td></tr>
+    <tr><td class="mono">2</td><td>Computer architecture</td><td>Data-oriented design / GPU</td><td class="mono">PERF</td></tr>
+    <tr><td class="mono">3</td><td>Control systems</td><td>Cameras, aim assist, game feel</td><td class="mono">FEEL</td></tr>
+  </table>
+  <div class="foot"><span>PRESS START SEMICONDUCTOR — HOBBY DIVISION</span><span>PAGE 1 OF 12</span></div>
+</div>
+</body></html>

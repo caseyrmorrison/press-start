@@ -2,7 +2,17 @@
 // file must satisfy every invariant here or the build refuses to emit.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { PROJECTS, ROADMAP, SKILL_MAP, DIFFICULTIES, TRACKS } from '../content/data.mjs';
+import { PROJECTS, ROADMAP, SKILL_MAP, DIFFICULTIES, TRACKS, ENGINES } from '../content/data.mjs';
+
+test('engines: all three mainstream engines, complete guidance', () => {
+  assert.equal(ENGINES.length, 3);
+  for (const e of ENGINES) {
+    for (const f of ['name', 'language', 'license', 'curve', 'bestFor', 'pick', 'watchOut']) {
+      assert.ok(typeof e[f] === 'string' && e[f].length >= 2, `${e.name}: missing ${f}`);
+    }
+    assert.ok(e.pick.length >= 40, `${e.name}: pick rationale too thin`);
+  }
+});
 
 test('difficulty enum is closed', () => {
   assert.deepEqual(DIFFICULTIES, ['weekend', 'two-weeks', 'month-plus']);
