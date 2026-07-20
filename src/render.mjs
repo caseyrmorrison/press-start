@@ -20,24 +20,32 @@ function hero() {
   <div class="docno">DOC. NO. GDEV-2026-01<br>REV A · JULY 2026 · SINGLE PAGE</div>
 </header>
 <div class="sheet" style="border-bottom:3px solid var(--rule-strong)"></div>
-<nav class="toc sheet" aria-label="Sections">
+<div class="tocbar"><nav class="toc" aria-label="Sections">
   <a href="#theory"><b>1</b>THEORY OF OPERATION</a>
   <a href="#pins"><b>2</b>SKILL TRANSFER</a>
   <a href="#roadmap"><b>3</b>ROADMAP</a>
   <a href="#engines"><b>4</b>ENGINE SELECT</a>
   <a href="#projects"><b>5</b>SIDE PROJECTS</a>
   <a href="#tracks"><b>6</b>TRACKS</a>
-</nav>
+</nav></div>
 <div class="titleblock sheet">
-  <div class="part">GDEV-101 · CAREER RETARGETING MODULE</div>
-  <h1>Mid-Career Engineer → Game Developer</h1>
-  <p class="sub">A field guide for the engineer with a CS degree, an ECE master's, and a
-  decade of real systems behind them — who wants to build games. What to refresh, what to
-  learn, what to go deep on, and ${PROJECTS.length} side projects with starter code you can
-  run tonight.</p>
+  <div class="herogrid">
+    <div>
+      <div class="part">GDEV-101 · CAREER RETARGETING MODULE</div>
+      <h1>Mid-Career Engineer → Game Developer</h1>
+      <p class="sub">A field guide for the engineer with a CS degree, an ECE master's, and a
+      decade of real systems behind them — who wants to build games. What to refresh, what to
+      learn, what to go deep on, and ${PROJECTS.length} side projects with starter code you can
+      run tonight.</p>
+    </div>
+    <figure class="fig" style="margin:0">
+      <canvas id="scope" width="800" height="380" aria-label="Oscilloscope: a sine wave gaining harmonics until it is a square wave"></canvas>
+      <figcaption class="cap">FIG. 1 — SAME SIGNAL, MORE HARMONICS. (YOUR CAREER, ACQUIRING GAME DEV.)</figcaption>
+    </figure>
+  </div>
   <div class="boot" role="img" aria-label="Boot sequence: your background checks out">PRESS-START BIOS v2.6 — SUBSTRATE CHECK
-MEMORY TEST: <b>BS COMPUTER SCIENCE ... OK</b>  <b>MS ELECTRICAL &amp; COMPUTER ENGINEERING ... OK</b>
-DETECTED: <span class="amber">C/C++</span> <span class="amber">DSP</span> <span class="amber">LINEAR ALGEBRA</span> <span class="amber">COMP ARCH</span> <span class="amber">NETWORKING</span> — ALL USABLE. NOTHING WASTED.
+MEMORY TEST . <b>BS COMPUTER SCIENCE ........ OK</b>   <b>MS ELECTRICAL &amp; COMPUTER ENG ... OK</b>
+DETECTED ... <span class="amber">C/C++</span>  <span class="amber">DSP</span>  <span class="amber">LINEAR ALGEBRA</span>  <span class="amber">COMP ARCH</span>  <span class="amber">NETWORKING</span> — ALL USABLE. NOTHING WASTED.
 BOOTING CAREER RETARGET MODULE ...</div>
   <div class="ratings">
     <div><b>${SKILL_MAP.length}</b>SKILL-TRANSFER LANES</div>
@@ -123,8 +131,8 @@ function roadmap() {
       <div class="body">
         <h3>${esc(it.topic)}</h3>
         <div class="why">${esc(it.why)}</div>
-        <div class="res">${it.resources.map(r => `<span>${esc(r)}</span>`).join('')}</div>
       </div>
+      <div class="res"><div class="rh">RESOURCES</div>${it.resources.map(r => `<span>${esc(r)}</span>`).join('')}</div>
     </div>`).join('')}
   </div>`).join('')}
 </section>`;
@@ -140,10 +148,12 @@ function engines() {
     ${ENGINES.map(e => `
     <div class="engine">
       <h3>${esc(e.name)}</h3>
-      <div class="spec">LANG&nbsp;&nbsp;&nbsp;<b>${esc(e.language)}</b><br>
-LICENSE&nbsp;<b>${esc(e.license)}</b><br>
-CURVE&nbsp;&nbsp;&nbsp;<b>${esc(e.curve)}</b><br>
-BEST&nbsp;&nbsp;&nbsp;&nbsp;<b>${esc(e.bestFor)}</b></div>
+      <dl class="spec">
+        <dt>LANG</dt><dd>${esc(e.language)}</dd>
+        <dt>LICENSE</dt><dd>${esc(e.license)}</dd>
+        <dt>CURVE</dt><dd>${esc(e.curve)}</dd>
+        <dt>BEST</dt><dd>${esc(e.bestFor)}</dd>
+      </dl>
       <div class="pick">${esc(e.pick)}</div>
       <div class="warn">${esc(e.watchOut)}</div>
     </div>`).join('')}
@@ -166,8 +176,8 @@ function projects() {
     <span class="fl" style="margin-left:12px">Topic</span>
     ${allTags.map(t =>
       `<button class="chipbtn" data-kind="tag" data-val="${esc(t)}" aria-pressed="false">${esc(t)}</button>`).join('')}
-    <span class="fl" style="margin-left:auto" data-proj-count>${PROJECTS.length} of ${PROJECTS.length} shown</span>
   </div>
+  <div class="filtercount" data-proj-count aria-live="polite">${PROJECTS.length} of ${PROJECTS.length} shown</div>
   <div class="projgrid">
     ${PROJECTS.map(p => `
     <article class="proj" id="proj-${p.id}" data-difficulty="${p.difficulty}" data-tags="${esc(p.tags.join(' '))}">

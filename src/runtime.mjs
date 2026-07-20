@@ -70,6 +70,76 @@ export const RUNTIME = `
     });
   });
 
+  // --- hero oscilloscope: a sine acquiring harmonics until it is square ---
+  (function scope() {
+    var cv = document.getElementById('scope');
+    if (!cv || !cv.getContext) return;
+    var ctx = cv.getContext('2d');
+    var W = cv.width, H = cv.height;
+    var reduced = false;
+    try { reduced = matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+    function wave(x, harmonics) {           // square-wave Fourier partial sum
+      var y = 0;
+      for (var k = 1; k <= harmonics; k += 2) y += Math.sin(x * k) / k;
+      return y * (4 / Math.PI);
+    }
+    function draw(harmonics, phase) {
+      ctx.fillStyle = '#10141c'; ctx.fillRect(0, 0, W, H);
+      ctx.strokeStyle = '#1d2736'; ctx.lineWidth = 1;   // graticule
+      ctx.beginPath();
+      for (var gx = 0; gx <= W; gx += W / 10) { ctx.moveTo(gx, 0); ctx.lineTo(gx, H); }
+      for (var gy = 0; gy <= H; gy += H / 8) { ctx.moveTo(0, gy); ctx.lineTo(W, gy); }
+      ctx.stroke();
+      ctx.strokeStyle = '#2a3854';
+      ctx.beginPath(); ctx.moveTo(0, H / 2); ctx.lineTo(W, H / 2); ctx.stroke();
+      ctx.strokeStyle = '#5ccfe6'; ctx.lineWidth = 2.5;
+      ctx.shadowColor = 'rgba(92,207,230,0.6)'; ctx.shadowBlur = 10;
+      ctx.beginPath();
+      for (var px = 0; px <= W; px++) {
+        var y = H / 2 - wave(px / W * Math.PI * 4 + phase, harmonics) * H * 0.3;
+        if (px === 0) ctx.moveTo(px, y); else ctx.lineTo(px, y);
+      }
+      ctx.stroke();
+      ctx.shadowBlur = 0;
+      ctx.fillStyle = '#718096';
+      ctx.font = '16px ui-monospace, Menlo, monospace';
+      ctx.fillText('CH1  500mV', 14, 24);
+      ctx.fillStyle = '#ffb454';
+      ctx.fillText('HARMONICS: ' + harmonics, W - 170, 24);
+    }
+    if (reduced) { draw(15, 0); return; }
+    var t = 0;
+    (function tick() {
+      t += 0.016;
+      // breathe between 1 and 15 harmonics on an 8s cycle
+      var h = 1 + 2 * Math.round(6.5 + 6.5 * Math.sin(t * Math.PI / 4 - Math.PI / 2));
+      draw(h, t * 1.4);
+      requestAnimationFrame(tick);
+    })();
+  })();
+
+  // --- sticky nav: highlight the section in view ---
+  (function navspy() {
+    var links = Array.prototype.slice.call(document.querySelectorAll('nav.toc a'));
+    var map = {};
+    links.forEach(function (a) { map[a.getAttribute('href').slice(1)] = a; });
+    if (!('IntersectionObserver' in window)) return;
+    var current = null;
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) {
+          if (current) current.classList.remove('active');
+          current = map[en.target.id];
+          if (current) current.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+    Object.keys(map).forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) obs.observe(el);
+    });
+  })();
+
   // --- copy buttons ---
   Array.prototype.forEach.call(document.querySelectorAll('.copybtn'), function (btn) {
     btn.addEventListener('click', function () {
