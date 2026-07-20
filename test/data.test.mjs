@@ -79,6 +79,7 @@ test('tracks: each track references only real project ids', () => {
   assert.ok(TRACKS.length >= 2);
   for (const t of TRACKS) {
     assert.ok(t.name.length > 2 && t.blurb.length >= 20);
+    assert.ok(t.outcome && t.outcome.length >= 30, `${t.name}: needs a real outcome`);
     assert.ok(t.projectIds.length >= 2, `${t.name}: needs >=2 projects`);
     for (const id of t.projectIds) assert.ok(ids.has(id), `${t.name}: unknown project ${id}`);
   }

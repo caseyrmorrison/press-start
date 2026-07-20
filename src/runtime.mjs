@@ -1,10 +1,12 @@
 // Client-side runtime, inlined at build time. Small on purpose: rendering
-// happens at build; this only handles filters, progress, and copy buttons.
-// The progress-store guards mirror src/logic.mjs (unit-tested there).
-export const RUNTIME = `
+// happens at build; this handles filters, progress, copy, search, and the
+// scope figure. The progress-store guards mirror src/logic.mjs (unit-tested).
+// searchIndexJson must be pre-sanitized JSON (no raw "<").
+export const makeRuntime = (searchIndexJson) => `
 (function () {
   'use strict';
   var KEY = 'press-start-progress';
+  var INDEX = ${searchIndexJson};
 
   // --- progress store (hardened parse; see logic.mjs tests) ---
   function parseProgress(raw) {
@@ -137,6 +139,55 @@ export const RUNTIME = `
     Object.keys(map).forEach(function (id) {
       var el = document.getElementById(id);
       if (el) obs.observe(el);
+    });
+  })();
+
+  // --- quick find (mirrors logic.mjs searchAll semantics) ---
+  (function qfind() {
+    var input = document.getElementById('qfind');
+    var panel = document.getElementById('qresults');
+    if (!input || !panel) return;
+    function esc(s) {
+      return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    }
+    function close() { panel.hidden = true; panel.innerHTML = ''; }
+    function go(anchor) {
+      close(); input.value = '';
+      var el = document.getElementById(anchor);
+      if (!el) return;
+      el.scrollIntoView({ block: 'center' });
+      el.classList.add('flash');
+      setTimeout(function () { el.classList.remove('flash'); }, 1600);
+    }
+    input.addEventListener('input', function () {
+      var q = input.value.trim().toLowerCase();
+      if (q.length < 2) { close(); return; }
+      var hits = INDEX.filter(function (e) {
+        return (e.label + ' ' + e.text).toLowerCase().indexOf(q) >= 0;
+      }).slice(0, 8);
+      if (!hits.length) {
+        panel.innerHTML = '<div class="qempty">no hits — try "audio", "c++", "rollback"…</div>';
+        panel.hidden = false; return;
+      }
+      panel.innerHTML = hits.map(function (h, i) {
+        return '<button type="button" data-i="' + i + '"><span class="qk qk-' + h.kind + '">' +
+          (h.kind === 'project' ? 'PROJ' : 'STUDY') + '</span><span>' + esc(h.label) + '</span></button>';
+      }).join('');
+      Array.prototype.forEach.call(panel.querySelectorAll('button'), function (b) {
+        b.addEventListener('click', function () { go(hits[+b.getAttribute('data-i')].anchor); });
+      });
+      panel.hidden = false;
+    });
+    input.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') close();
+      if (e.key === 'Enter') {
+        var first = panel.querySelector('button');
+        if (first) first.click();
+      }
+    });
+    document.addEventListener('click', function (e) {
+      if (!panel.contains(e.target) && e.target !== input) close();
     });
   })();
 

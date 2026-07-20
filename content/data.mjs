@@ -705,16 +705,19 @@ export const TRACKS = [
   {
     name: 'Engine Programmer',
     blurb: 'From game loop to architecture to shipping systems — the path to engine and gameplay-systems roles.',
+    outcome: 'A portfolio that says "I understand what engines do under the hood," which is exactly what engine teams interview for.',
     projectIds: ['pong-fixed-timestep', 'ecs-asteroids', 'verlet-physics', 'rollback-pong']
   },
   {
     name: 'Graphics Programmer',
     blurb: 'Rasterization from first principles up through real-time rendering — the deepest lane, and the one closest to computer architecture.',
+    outcome: 'You will be able to read a frame capture, explain the pipeline, and write shaders — the entry bar for rendering roles.',
     projectIds: ['software-rasterizer', 'raycaster-dungeon', 'boids-spatial-hash']
   },
   {
     name: 'Audio / DSP Specialist',
     blurb: 'The rarest specialty in game dev and the one your MS hands you almost for free.',
+    outcome: 'A demonstrable synth + netcode-aware audio sensibility. Audio programmer openings routinely go unfilled; be the person who fills one.',
     projectIds: ['chip-synth', 'pong-fixed-timestep', 'rollback-pong']
   }
 ];
