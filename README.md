@@ -6,8 +6,12 @@ who wants into game development. Styled as a component datasheet for part
 roadmap with persistent progress, engine selection guide, and 8 side projects
 with runnable zero-dependency starter code.
 
-**Live:** https://claude.ai/code/artifact/88248169-8a73-4953-b5a5-930b6fbef5d2
-(private until shared — use the page's share menu to give friends access)
+**Live:** https://caseyrmorrison.github.io/press-start/ — public, share freely.
+Deployed automatically by GitHub Actions on every push to `main` (tests must pass).
+
+Also mirrored as a Claude artifact:
+https://claude.ai/code/artifact/88248169-8a73-4953-b5a5-930b6fbef5d2
+(private until shared from its share menu)
 
 ## Develop
 
