@@ -1,0 +1,11 @@
+{
+  "name": "press-start",
+  "version": "1.0.0",
+  "description": "Game development learning platform for a mid-career ECE/CS engineer",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "test": "node --test 'test/*.test.mjs'",
+    "build": "node --test 'test/*.test.mjs' && node build.mjs"
+  }
+}
