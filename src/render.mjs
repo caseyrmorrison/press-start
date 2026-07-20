@@ -32,7 +32,7 @@ function hero() {
   return `
 <header class="dochead sheet" style="border-bottom:none; padding-bottom:0">
   <div class="corp">PRESS<b>▶</b>START</div>
-  <div class="docno">DOC. NO. GDEV-2026-01<br>REV A · JULY 2026 · SINGLE PAGE</div>
+  <div class="docno">DOC. NO. GDEV-2026-01<br>REV A · JULY 2026<span class="dn-extra"> · SINGLE PAGE</span></div>
 </header>
 <div class="sheet" style="border-bottom:3px solid var(--rule-strong)"></div>
 <div class="tocbar"><nav class="toc" aria-label="Sections">
@@ -307,6 +307,20 @@ function footer() {
 </footer>`;
 }
 
+function body() {
+  return `${hero()}
+<main>
+${theory()}
+${pins()}
+${roadmap()}
+${engines()}
+${projects()}
+${tracks()}
+</main>
+${footer()}
+<script>${makeRuntime(searchIndex())}</script>`;
+}
+
 export function renderPage() {
   return `<!doctype html>
 <html lang="en">
@@ -318,17 +332,14 @@ export function renderPage() {
 <style>${STYLES}</style>
 </head>
 <body>
-${hero()}
-<main>
-${theory()}
-${pins()}
-${roadmap()}
-${engines()}
-${projects()}
-${tracks()}
-</main>
-${footer()}
-<script>${makeRuntime(searchIndex())}</script>
+${body()}
 </body>
 </html>`;
+}
+
+// Artifact-host variant: same page, no document skeleton (the host adds it).
+export function renderArtifact() {
+  return `<title>Press Start — Game Dev for the Mid-Career Engineer</title>
+<style>${STYLES}</style>
+${body()}`;
 }

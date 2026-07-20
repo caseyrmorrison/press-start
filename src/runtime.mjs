@@ -189,6 +189,13 @@ export const makeRuntime = (searchIndexJson) => `
     document.addEventListener('click', function (e) {
       if (!panel.contains(e.target) && e.target !== input) close();
     });
+    document.addEventListener('keydown', function (e) {   // "/" focuses search
+      if (e.key === '/' && document.activeElement !== input &&
+          !/INPUT|TEXTAREA/.test(document.activeElement.tagName)) {
+        e.preventDefault(); input.focus();
+      }
+    });
+    input.placeholder = 'find a topic…  ( / )';
   })();
 
   // --- copy buttons ---

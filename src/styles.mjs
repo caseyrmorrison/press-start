@@ -267,7 +267,8 @@ pre { padding: 14px; overflow-x: auto; font-family: var(--mono); font-size: 12px
 .tracks { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 .track { border: 1px solid var(--rule); border-radius: 4px; padding: 18px;
   display: flex; flex-direction: column; }
-.trackhead { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+.trackhead { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+.trackhead .eff { margin-top: 3px; }
 .track h3 { font-size: 16px; }
 .track .eff { font-family: var(--mono); font-size: 10.5px; color: var(--dim);
   border: 1px solid var(--rule); border-radius: 999px; padding: 2px 8px; white-space: nowrap; }
@@ -315,6 +316,16 @@ footer { border-top: 3px solid var(--rule-strong); margin-top: 48px; padding: 18
 @media (max-width: 760px) {
   .sheet { padding: 0 18px; }
   nav.toc { padding: 8px 18px; }
+  .dochead { align-items: center; }
+  .docno { font-size: 10px; }
+  .docno .dn-extra { display: none; }
+  .part { font-size: 11px; letter-spacing: 0.12em; }
+  .boot { white-space: pre-wrap; font-size: 11.5px; line-height: 1.75; }
+  .ratings { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px 12px; }
+  .ratings b { font-size: 22px; }
+  .sechead { flex-wrap: wrap; gap: 8px 14px; }
+  h2 { font-size: 15px; }
+  .secnote { display: none; }
   .disciplines, .engines, .projgrid, .tracks { grid-template-columns: 1fr; }
   .proj .lists { grid-template-columns: 1fr; }
   .item { grid-template-columns: 26px 1fr; }
